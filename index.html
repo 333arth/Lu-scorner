@@ -1,29 +1,77 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Earth Girl Jewels</title>
-    <style>
-      body { font-family: Arial; text-align: center; }
-      .product { border: 1px solid #ddd; padding: 20px; margin: 10px; display: inline-block; width: 200px; }
-      button { padding: 10px 20px; margin-top: 10px; background-color: green; color: white; border: none; cursor: pointer; }
-    </style>
-  </head>
-  <body>
-    <h1>🌿 Earth Girl Jewels</h1>
-    <p>Handmade jewelry for grounded hearts 🌎</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌿 Earth Girl Shop</title>
+  <!-- Google Font: Comfortaa (you can change this to any font you want) -->
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #e8f5e9; /* light leafy green */
+      color: #2e7d32; /* dark forest green */
+      font-family: 'Comfortaa', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-    <div class="product">
-      <h2>Beaded Bracelet</h2>
-      <p>"https://i.imgur.com/yourimage.jpg" width="150" />
-      <button onclick="window.location.href='https://paypal.me/yourname/10'">Buy with PayPal</button>
-    </div>
+    h1 {
+      background-color: #a5d6a7; /* soft green banner */
+      padding: 20px;
+      margin: 0;
+    }
 
-    <div class="product">
-      <h2>Nature Necklace</h2>
-      <p>$15</p>
-      <button onclick="window.location.href='https://paypal.me/yourname/15'">Buy with PayPal</button>
-    </div>
+    .product {
+      background-color: #ffffff;
+      border: 1px solid #c8e6c9;
+      margin: 30px auto;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0px 4px 10px rgba(0, 100, 0, 0.1);
+      border-radius: 8px;
+    }
 
-    <footer><p>Thank you for supporting small businesses ❤️</p></footer>
-  </body>
+    button {
+      background-color: #388e3c; /* strong green */
+      color: #ffffff;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Comfortaa', cursive;
+    }
+
+    button:hover {
+      background-color: #2e7d32; /* darker on hover */
+    }
+
+    p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 Earth Girl Jewels</h1>
+  <p>Handmade jewelry rooted in nature 🌱</p>
+
+  <div class="product">
+    <h2>Beaded Bracelet</h2>
+    <p><strong>K120</strong></p>
+    <button onclick="alert('Send K120 to MTN: 0966 123 456\nThen WhatsApp your proof to 0977 789 012')">
+      Buy with Mobile Money
+    </button>
+  </div>
+
+  <div class="product">
+    <h2>Nature Necklace</h2>
+    <p><strong>K150</strong></p>
+    <button onclick="alert('Send K150 to Airtel: 0977 654 321\nThen WhatsApp your proof to 0977 789 012')">
+      Buy with Mobile Money
+    </button>
+  </div>
+
+  <p>🌸 Thank you for supporting handmade art</p>
+</body>
 </html>
