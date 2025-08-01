@@ -1,77 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌿 Earth Girl Shop</title>
-  <!-- Google Font: Comfortaa (you can change this to any font you want) -->
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <title>Earth Girl Jewels</title>
   <style>
     body {
-      background-color: #e8f5e9; /* light leafy green */
-      color: #2e7d32; /* dark forest green */
       font-family: 'Comfortaa', cursive;
+      background-color: #e8f5e9;
+      color: #2e7d32;
       text-align: center;
-      margin: 0;
-      padding: 0;
     }
-
-    h1 {
-      background-color: #a5d6a7; /* soft green banner */
-      padding: 20px;
-      margin: 0;
-    }
-
     .product {
-      background-color: #ffffff;
       border: 1px solid #c8e6c9;
+      margin: 20px auto;
+      padding: 20px;
+      width: 250px;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #388e3c;
+      color: white;
+      padding: 10px;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background-color: #2e7d32;
+    }
+    #cart {
       margin: 30px auto;
       padding: 20px;
-      width: 260px;
-      box-shadow: 0px 4px 10px rgba(0, 100, 0, 0.1);
-      border-radius: 8px;
+      border: 1px dashed #81c784;
+      width: 300px;
+      background-color: #ffffff;
     }
-
-    button {
-      background-color: #388e3c; /* strong green */
-      color: #ffffff;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      font-family: 'Comfortaa', cursive;
-    }
-
-    button:hover {
-      background-color: #2e7d32; /* darker on hover */
-    }
-
-    p {
-      font-size: 16px;
+    ul {
+      list-style: none;
+      padding: 0;
     }
   </style>
 </head>
 <body>
+
   <h1>🌿 Earth Girl Jewels</h1>
   <p>Handmade jewelry rooted in nature 🌱</p>
 
   <div class="product">
     <h2>Beaded Bracelet</h2>
-    <p><strong>K120</strong></p>
-    <button onclick="alert('Send K120 to MTN: 0764202839\nThen WhatsApp your proof to 0977 789 012')">
-      Buy with Mobile Money
-    </button>
+    <p>K120</p>
+    <button onclick="addToCart('Beaded Bracelet', 120)">Add to Cart</button>
   </div>
 
   <div class="product">
     <h2>Nature Necklace</h2>
-    <p><strong>K150</strong></p>
-    <button onclick="alert('Send K150 to Airtel: 0764202839\nThen WhatsApp your proof to 0977 789 012')">
-      Buy with Mobile Money
-    </button>
+    <p>K150</p>
+    <button onclick="addToCart('Nature Necklace', 150)">Add to Cart</button>
   </div>
 
-  <p>🌸 Thank you for supporting handmade art</p>
+  <div id="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
+    <button onclick="showPayment()">Proceed to Payment</button>
+  </div>
+
+  <div id="payment" style="display:none; margin-top:20px;">
+    <h2>💸 Payment Instructions</h2>
+    <p>Send the total amount to:</p>
+    <p><strong>MTN: 0966 123 456</strong></p>
+    <p><strong>Airtel: 0977 654 321</strong></p>
+    <p>Then WhatsApp proof to <strong>0977 789 012</strong></p>
+  </div>
+
+  <script>
+    let cart = [];
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - K${item.price}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = total;
+    }
+
+    function showPayment() {
+      document.getElementById("payment").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
