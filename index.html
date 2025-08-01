@@ -2,20 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Marian's Collection</title>
+  <title>🍀 Earth Girl Jewels</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f7f7;
+      font-family: 'Georgia', serif;
+      background-color: #f3f1e7;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: #4b4b3a;
     }
 
     header {
-      background-color: #ddd;
+      background-color: #c8d5b9;
       padding: 20px;
       text-align: center;
+      border-bottom: 4px solid #a2a378;
+    }
+
+    header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      display: inline-block;
+      font-size: 28px;
+      vertical-align: middle;
+      margin: 0;
+      color: #3b3b2c;
     }
 
     .container {
@@ -32,41 +49,59 @@
     }
 
     .product {
-      background-color: white;
+      background-color: #fffdf7;
       padding: 15px;
       border-radius: 8px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 1px solid #e0dccf;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .product img {
       max-width: 100%;
+      height: 150px;
+      object-fit: cover;
       border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .product button {
+      background-color: #a2a378;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #889866;
     }
 
     .sidebar {
       flex: 1;
-      background-color: #ffffff;
+      background-color: #fffdf7;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border: 1px solid #e0dccf;
     }
 
     footer {
-      background-color: #ccc;
+      background-color: #c8d5b9;
       padding: 30px;
       text-align: center;
       margin-top: 40px;
+      border-top: 4px solid #a2a378;
     }
 
     footer p {
       margin: 5px;
-      color: #444;
+      color: #4b4b3a;
     }
 
     footer a {
       margin: 0 10px;
-      color: #333;
+      color: #3b3b2c;
       text-decoration: none;
     }
 
@@ -78,19 +113,48 @@
 <body>
 
 <header>
-  <h1>Marian's Collection</h1>
-  <p>Handmade Jewellery & More</p>
+  <img src="https://i.imgur.com/1vWTKja.png" alt="Logo">
+  <h1>🍀 Earth Girl Jewels</h1>
 </header>
 
 <div class="container">
   <div class="products">
     <div class="product">
+      <img src="https://i.imgur.com/TDj1RYI.jpg" alt="Beaded Necklace">
       <h3>Beaded Necklace</h3>
-      <img src="https://via.placeholder.com/150" alt="Product">
       <p>K120</p>
       <button onclick="addToCart('Beaded Necklace', 120)">Add to Cart</button>
     </div>
-    <!-- Add more products here -->
+    <div class="product">
+      <img src="https://i.imgur.com/0rnl5fp.jpg" alt="Stone Bracelet">
+      <h3>Stone Bracelet</h3>
+      <p>K90</p>
+      <button onclick="addToCart('Stone Bracelet', 90)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jWfCwzd.jpg" alt="Earthy Earrings">
+      <h3>Earthy Earrings</h3>
+      <p>K60</p>
+      <button onclick="addToCart('Earthy Earrings', 60)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/SSUclJM.jpg" alt="Leaf Pendant">
+      <h3>Leaf Pendant</h3>
+      <p>K150</p>
+      <button onclick="addToCart('Leaf Pendant', 150)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jPqA5Jz.jpg" alt="Woven Anklet">
+      <h3>Woven Anklet</h3>
+      <p>K80</p>
+      <button onclick="addToCart('Woven Anklet', 80)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/eh8EAYQ.jpg" alt="Nature Ring">
+      <h3>Nature Ring</h3>
+      <p>K70</p>
+      <button onclick="addToCart('Nature Ring', 70)">Add to Cart</button>
+    </div>
   </div>
 
   <div class="sidebar">
@@ -110,11 +174,11 @@
 </div>
 
 <footer>
-  <p>Contact us: <strong>marian@collection.com</strong></p>
+  <p>Contact: <strong>earthgirljewels@gmail.com</strong></p>
   <p>Phone: +260 977 123 456</p>
   <div>
-    <a href="https://facebook.com/marianscollection" target="_blank">Facebook</a>
-    <a href="https://instagram.com/marians.collection" target="_blank">Instagram</a>
+    <a href="https://facebook.com/earthgirljewels" target="_blank">Facebook</a>
+    <a href="https://instagram.com/earthgirljewels" target="_blank">Instagram</a>
     <a href="https://wa.me/260977123456" target="_blank">WhatsApp</a>
   </div>
 </footer>
