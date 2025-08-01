@@ -35,6 +35,17 @@
       color: #3b3b2c;
     }
 
+    #searchBar {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 12px;
+      width: 60%;
+      max-width: 300px;
+      border: 1px solid #a2a378;
+      border-radius: 5px;
+      font-family: 'Georgia', serif;
+    }
+
     .container {
       display: flex;
       padding: 20px;
@@ -86,6 +97,10 @@
       border: 1px solid #e0dccf;
     }
 
+    #cart, #payment {
+      display: none;
+    }
+
     footer {
       background-color: #c8d5b9;
       padding: 30px;
@@ -115,6 +130,7 @@
 <header>
   <img src="https://i.imgur.com/1vWTKja.png" alt="Logo">
   <h1>🍀 Earth Girl Jewels</h1>
+  <input type="text" id="searchBar" placeholder="Search for products...">
 </header>
 
 <div class="container">
@@ -164,7 +180,7 @@
       <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
     </div>
 
-    <div id="payment" style="display:none;">
+    <div id="payment">
       <h2>💸 Payment Info</h2>
       <p>MTN: <strong>0966 123 456</strong></p>
       <p>Airtel: <strong>0977 654 321</strong></p>
@@ -191,7 +207,9 @@
     cart.push({ name, price });
     clickCount++;
     updateCart();
+
     if (clickCount >= 3) {
+      document.getElementById("cart").style.display = "block";
       document.getElementById("payment").style.display = "block";
     }
   }
@@ -207,6 +225,16 @@
     });
     total.textContent = sum;
   }
+
+  document.getElementById("searchBar").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+      const name = product.querySelector("h3").textContent.toLowerCase();
+      product.style.display = name.includes(query) ? "block" : "none";
+    });
+  });
 </script>
 
 </body>
