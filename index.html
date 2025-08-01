@@ -2,178 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🌿 Earth Girl Jewels</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <title>Marian's Collection</title>
   <style>
-    * { box-sizing: border-box; }
-
     body {
-      font-family: 'Comfortaa', cursive;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
       margin: 0;
-      background-color: #e8f5e9;
-      color: #2e7d32;
+      padding: 0;
+      color: #333;
     }
 
     header {
-      background-color: #a5d6a7;
-      text-align: center;
+      background-color: #ddd;
       padding: 20px;
+      text-align: center;
     }
 
     .container {
       display: flex;
-      flex-wrap: wrap;
       padding: 20px;
+      gap: 20px;
     }
 
     .products {
-      flex: 2;
+      flex: 3;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 6px;
     }
 
     .sidebar {
       flex: 1;
-      padding-left: 20px;
-    }
-
-    .product {
       background-color: #ffffff;
-      border: 1px solid #c8e6c9;
-      margin: 20px;
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    button {
-      background-color: #388e3c;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    footer {
+      background-color: #ccc;
+      padding: 30px;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    button:hover {
-      background-color: #2e7d32;
+    footer p {
+      margin: 5px;
+      color: #444;
     }
 
-    #cart, #payment {
-      background-color: #ffffff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0, 100, 0, 0.1);
+    footer a {
+      margin: 0 10px;
+      color: #333;
+      text-decoration: none;
     }
 
-    ul {
-      padding-left: 0;
-      list-style: none;
-    }
-
-    #payment {
-      display: none; /* hidden by default */
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        padding-left: 0;
-      }
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🌿 Earth Girl Jewels</h1>
-    <p>Handmade with love from the earth 🌱</p>
-  </header>
+<header>
+  <h1>Marian's Collection</h1>
+  <p>Handmade Jewellery & More</p>
+</header>
 
-  <div class="container">
-    <!-- Products Section -->
-    <div class="products">
-      <div class="product">
-        <h2>Beaded Bracelet</h2>
-        <p>Price: K120</p>
-        <button onclick="addToCart('Beaded Bracelet', 120)">Add to Cart</button>
-      </div>
-
-      <div class="product">
-        <h2>Nature Necklace</h2>
-        <p>Price: K150</p>
-        <button onclick="addToCart('Nature Necklace', 150)">Add to Cart</button>
-      </div>
-
-      <div class="product">
-        <h2>Sunstone Earrings</h2>
-        <p>Price: K100</p>
-        <button onclick="addToCart('Sunstone Earrings', 100)">Add to Cart</button>
-      </div>
-
-      <div class="product">
-        <h2>Clay Pendant</h2>
-        <p>Price: K130</p>
-        <button onclick="addToCart('Clay Pendant', 130)">Add to Cart</button>
-      </div>
+<div class="container">
+  <div class="products">
+    <div class="product">
+      <h3>Beaded Necklace</h3>
+      <img src="https://via.placeholder.com/150" alt="Product">
+      <p>K120</p>
+      <button onclick="addToCart('Beaded Necklace', 120)">Add to Cart</button>
     </div>
-
-    <!-- Sidebar: Cart + Payment -->
-    <div class="sidebar">
-      <div id="cart">
-        <h2>🛒 Cart</h2>
-        <ul id="cartItems"></ul>
-        <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
-      </div>
-
-      <div id="payment">
-        <h2>💸 Payment Info</h2>
-        <p><strong>Step 1:</strong> Send your total to:</p>
-        <p>📱 MTN: <strong>0966 123 456</strong></p>
-        <p>📱 Airtel: <strong>0977 654 321</strong></p>
-        <p><strong>Step 2:</strong> WhatsApp proof to:</p>
-        <p>📩 <strong>0977 789 012</strong></p>
-        <p>✅ We'll confirm and ship your items!</p>
-      </div>
-    </div>
+    <!-- Add more products here -->
   </div>
 
-  <script>
-    let cart = [];
-    let clickCount = 0;
+  <div class="sidebar">
+    <div id="cart">
+      <h2>🛒 Cart</h2>
+      <ul id="cartItems"></ul>
+      <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
+    </div>
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      clickCount++;
-      updateCart();
-      if (clickCount >= 3) {
-        document.getElementById("payment").style.display = "block";
-      }
+    <div id="payment" style="display:none;">
+      <h2>💸 Payment Info</h2>
+      <p>MTN: <strong>0966 123 456</strong></p>
+      <p>Airtel: <strong>0977 654 321</strong></p>
+      <p>WhatsApp proof to <strong>0977 789 012</strong></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Contact us: <strong>marian@collection.com</strong></p>
+  <p>Phone: +260 977 123 456</p>
+  <div>
+    <a href="https://facebook.com/marianscollection" target="_blank">Facebook</a>
+    <a href="https://instagram.com/marians.collection" target="_blank">Instagram</a>
+    <a href="https://wa.me/260977123456" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  let cart = [];
+  let clickCount = 0;
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    clickCount++;
+    updateCart();
+    if (clickCount >= 3) {
+      document.getElementById("payment").style.display = "block";
     }
-
-    function updateCart() {
-      const cartItems = document.getElementById("cartItems");
-      const cartTotal = document.getElementById("cartTotal");
-      cartItems.innerHTML = "";
-      let total = 0;
-      cart.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.name} - K${item.price}`;
-        cartItems.appendChild(li);
-        total += item.price;
-      });
-      cartTotal.textContent = total;
-
   }
-  function updateCart(){
-    const items=document.getElementById("cartItems"),
-          totalEl=document.getElementById("cartTotal");
-    items.innerHTML=""; let t=0;
-    cart.forEach(i=>{
-      items.innerHTML+=`<li>${i.name} - K${i.price}</li>`; t+=i.price;
+
+  function updateCart() {
+    const cartList = document.getElementById("cartItems");
+    const total = document.getElementById("cartTotal");
+    cartList.innerHTML = "";
+    let sum = 0;
+    cart.forEach(item => {
+      cartList.innerHTML += `<li>${item.name} - K${item.price}</li>`;
+      sum += item.price;
     });
-    totalEl.textContent=t;
+    total.textContent = sum;
   }
 </script>
-<!-- ... your footer ... -->
+
+</body>
+</html>
