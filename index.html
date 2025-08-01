@@ -1,84 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Earth Girl Jewels</title>
+  <meta charset="UTF-8">
+  <title>🌿 Earth Girl Jewels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
+
     body {
       font-family: 'Comfortaa', cursive;
+      margin: 0;
       background-color: #e8f5e9;
       color: #2e7d32;
+    }
+
+    header {
+      background-color: #a5d6a7;
       text-align: center;
-    }
-    .product {
-      border: 1px solid #c8e6c9;
-      margin: 20px auto;
       padding: 20px;
-      width: 250px;
-      background-color: #fff;
-      border-radius: 10px;
     }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .products {
+      flex: 2;
+    }
+
+    .sidebar {
+      flex: 1;
+      padding-left: 20px;
+    }
+
+    .product {
+      background-color: #ffffff;
+      border: 1px solid #c8e6c9;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
     button {
       background-color: #388e3c;
       color: white;
-      padding: 10px;
+      padding: 10px 15px;
       border: none;
-      margin-top: 10px;
-      cursor: pointer;
       border-radius: 6px;
+      cursor: pointer;
     }
+
     button:hover {
       background-color: #2e7d32;
     }
-    #cart {
-      margin: 30px auto;
-      padding: 20px;
-      border: 1px dashed #81c784;
-      width: 300px;
+
+    #cart, #payment {
       background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 100, 0, 0.1);
     }
+
     ul {
+      padding-left: 0;
       list-style: none;
-      padding: 0;
+    }
+
+    #payment {
+      display: none; /* hidden by default */
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        padding-left: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>🌿 Earth Girl Jewels</h1>
-  <p>Handmade jewelry rooted in nature 🌱</p>
+  <header>
+    <h1>🌿 Earth Girl Jewels</h1>
+    <p>Handmade with love from the earth 🌱</p>
+  </header>
 
-  <div class="product">
-    <h2>Beaded Bracelet</h2>
-    <p>K120</p>
-    <button onclick="addToCart('Beaded Bracelet', 120)">Add to Cart</button>
-  </div>
+  <div class="container">
+    <!-- Products Section -->
+    <div class="products">
+      <div class="product">
+        <h2>Beaded Bracelet</h2>
+        <p>Price: K120</p>
+        <button onclick="addToCart('Beaded Bracelet', 120)">Add to Cart</button>
+      </div>
 
-  <div class="product">
-    <h2>Nature Necklace</h2>
-    <p>K150</p>
-    <button onclick="addToCart('Nature Necklace', 150)">Add to Cart</button>
-  </div>
+      <div class="product">
+        <h2>Nature Necklace</h2>
+        <p>Price: K150</p>
+        <button onclick="addToCart('Nature Necklace', 150)">Add to Cart</button>
+      </div>
 
-  <div id="cart">
-    <h2>🛒 Your Cart</h2>
-    <ul id="cartItems"></ul>
-    <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
-    <button onclick="showPayment()">Proceed to Payment</button>
-  </div>
+      <div class="product">
+        <h2>Sunstone Earrings</h2>
+        <p>Price: K100</p>
+        <button onclick="addToCart('Sunstone Earrings', 100)">Add to Cart</button>
+      </div>
 
-  <div id="payment" style="display:none; margin-top:20px;">
-    <h2>💸 Payment Instructions</h2>
-    <p>Send the total amount to:</p>
-    <p><strong>MTN: 0966 123 456</strong></p>
-    <p><strong>Airtel: 0977 654 321</strong></p>
-    <p>Then WhatsApp proof to <strong>0977 789 012</strong></p>
+      <div class="product">
+        <h2>Clay Pendant</h2>
+        <p>Price: K130</p>
+        <button onclick="addToCart('Clay Pendant', 130)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Sidebar: Cart + Payment -->
+    <div class="sidebar">
+      <div id="cart">
+        <h2>🛒 Cart</h2>
+        <ul id="cartItems"></ul>
+        <p><strong>Total: K<span id="cartTotal">0</span></strong></p>
+      </div>
+
+      <div id="payment">
+        <h2>💸 Payment Info</h2>
+        <p><strong>Step 1:</strong> Send your total to:</p>
+        <p>📱 MTN: <strong>0966 123 456</strong></p>
+        <p>📱 Airtel: <strong>0977 654 321</strong></p>
+        <p><strong>Step 2:</strong> WhatsApp proof to:</p>
+        <p>📩 <strong>0977 789 012</strong></p>
+        <p>✅ We'll confirm and ship your items!</p>
+      </div>
+    </div>
   </div>
 
   <script>
     let cart = [];
+    let clickCount = 0;
+
     function addToCart(name, price) {
       cart.push({ name, price });
+      clickCount++;
       updateCart();
+      if (clickCount >= 3) {
+        document.getElementById("payment").style.display = "block";
+      }
     }
 
     function updateCart() {
@@ -93,10 +164,6 @@
         total += item.price;
       });
       cartTotal.textContent = total;
-    }
-
-    function showPayment() {
-      document.getElementById("payment").style.display = "block";
     }
   </script>
 
