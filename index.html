@@ -98,11 +98,10 @@
       border: 1px solid #e0dccf;
     }
 
-    /* Sliding cart */
     #cart, #payment {
       position: fixed;
       right: -100%;
-      top: 80px;
+      top: 100px;
       width: 300px;
       background: #fffdf7;
       padding: 20px;
@@ -157,8 +156,42 @@
 
 <div class="container">
   <div class="products">
-    <!-- Product Cards Here (unchanged) -->
-    <!-- Paste your existing product blocks here -->
+    <div class="product">
+      <img src="https://i.imgur.com/TDj1RYI.jpg" alt="Beaded Necklace">
+      <h3>Beaded Necklace</h3>
+      <p>K120</p>
+      <button onclick="addToCart('Beaded Necklace', 120)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/0rnl5fp.jpg" alt="Stone Bracelet">
+      <h3>Stone Bracelet</h3>
+      <p>K90</p>
+      <button onclick="addToCart('Stone Bracelet', 90)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jWfCwzd.jpg" alt="Earthy Earrings">
+      <h3>Earthy Earrings</h3>
+      <p>K60</p>
+      <button onclick="addToCart('Earthy Earrings', 60)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/SSUclJM.jpg" alt="Leaf Pendant">
+      <h3>Leaf Pendant</h3>
+      <p>K150</p>
+      <button onclick="addToCart('Leaf Pendant', 150)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jPqA5Jz.jpg" alt="Woven Anklet">
+      <h3>Woven Anklet</h3>
+      <p>K80</p>
+      <button onclick="addToCart('Woven Anklet', 80)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/eh8EAYQ.jpg" alt="Nature Ring">
+      <h3>Nature Ring</h3>
+      <p>K70</p>
+      <button onclick="addToCart('Nature Ring', 70)">Add to Cart</button>
+    </div>
   </div>
 </div>
 
