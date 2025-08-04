@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>🍀 Earth Girl Jewels</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* Core styling */
     body {
       font-family: 'Georgia', serif;
-      background-color: #575B49;
       margin: 0;
       padding: 0;
+      background-color: #575B49;
       color: #4b4b3a;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-
     header {
       background-color: #575B49;
       display: flex;
@@ -20,60 +23,51 @@
       justify-content: space-between;
       padding: 10px 20px;
       border-bottom: 4px solid #a2a378;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    header img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-    }
-
+    header img { width: 60px; height: 60px; border-radius: 50%; }
     header h1 {
       font-size: 28px;
       margin: 0;
       color: #c8d5b9;
     }
-
     .cartIcon {
       position: relative;
       font-size: 24px;
       color: #c8d5b9;
-      text-decoration: none;
+      cursor: pointer;
     }
-
     .cartIcon span {
       position: absolute;
-      top: -8px;
-      right: -8px;
+      top: -8px; right: -8px;
       background: #ff4d4d;
       color: white;
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       font-size: 10px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
     #searchBar {
       display: block;
       margin: 20px auto;
       padding: 12px 16px;
-      width: 90%;
-      max-width: 600px;
+      width: 90%; max-width: 600px;
       font-size: 18px;
       border: 2px solid #a2a378;
       border-radius: 25px;
     }
 
+    /* Product grid like first photo */
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-
     .product {
       background-color: #fffdf7;
       border-radius: 20px;
@@ -81,25 +75,19 @@
       padding: 15px;
       text-align: center;
     }
-
     .product img {
-      width: 100%;
-      height: 180px;
+      width: 100%; height: 180px;
       object-fit: cover;
       border-radius: 15px;
       margin-bottom: 10px;
     }
-
     .product h3 {
       font-size: 18px;
       margin: 10px 0 5px;
     }
-
     .product p {
-      font-size: 16px;
-      margin: 5px 0;
+      font-size: 16px; margin: 5px 0;
     }
-
     .product button {
       background-color: #a2a378;
       color: white;
@@ -109,55 +97,32 @@
       cursor: pointer;
       font-size: 14px;
     }
-
     .product button:hover {
       background-color: #889866;
     }
 
-    #cart, #payment {
-      position: fixed;
-      right: -100%;
-      top: 100px;
-      width: 300px;
-      background: #fffdf7;
-      padding: 20px;
-      border: 2px solid #a2a378;
-      border-radius: 10px 0 0 10px;
-      box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-      transition: right 0.5s;
-      z-index: 999;
-    }
-
-    #cart.show, #payment.show {
-      right: 0;
-    }
-
+    /* Floating cart icon */
     #floatingCart {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 20px; right: 20px;
       background-color: #a2a378;
       color: white;
-      width: 60px;
-      height: 60px;
+      width: 60px; height: 60px;
       border-radius: 50%;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      z-index: 9999;
-      text-decoration: none;
+      z-index: 100;
+      cursor: pointer;
     }
-
     #floatingCart span {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 10px; right: 10px;
       background: #ff4d4d;
       color: white;
-      width: 20px;
-      height: 20px;
+      width: 20px; height: 20px;
       font-size: 12px;
       border-radius: 50%;
       display: flex;
@@ -165,169 +130,210 @@
       justify-content: center;
     }
 
+    /* Cart drawer */
+    #cartDrawer {
+      position: fixed;
+      right: -350px;
+      top: 0;
+      width: 350px;
+      height: 100%;
+      background: #fffdf7;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+    }
+    #cartDrawer.show { right: 0; }
+    #cartDrawer h2 {
+      margin-top: 0;
+      color: #4b4b3a;
+    }
+    #cartDrawer ul {
+      list-style: none;
+      padding: 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+    #cartDrawer li {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #4b4b3a;
+    }
+    #cartDrawer .total {
+      font-size: 18px;
+      margin-top: auto;
+      font-weight: bold;
+      color: #4b4b3a;
+    }
+    #cartDrawer .closeBtn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      position: absolute;
+      top: 15px; right: 15px;
+      cursor: pointer;
+      color: #4b4b3a;
+    }
+
+    /* Footer fixed at bottom */
     footer {
       background-color: #c8d5b9;
       text-align: center;
-      padding: 30px 10px;
+      padding: 20px 10px;
       border-top: 4px solid #a2a378;
+      margin-top: auto;
     }
-
     footer img {
       width: 80px;
       border-radius: 15px;
       margin-bottom: 10px;
     }
-
     footer a {
       color: #4b4b3a;
-      margin: 0 10px;
+      margin: 0 8px;
       text-decoration: none;
       font-size: 14px;
     }
-
     footer a:hover {
       text-decoration: underline;
     }
-
     footer p {
       font-size: 12px;
       color: #4b4b3a;
-      margin-top: 20px;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="https://i.imgur.com/1vWTKja.png" alt="Logo">
-  <h1>Earth Girl Jewels</h1>
-  <a href="#cart" class="cartIcon">
+  <header>
+    <img src="https://i.imgur.com/1vWTKja.png" alt="Logo" />
+    <h1>Earth Girl Jewels</h1>
+    <div class="cartIcon" onclick="toggleCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="headerCartCount">0</span>
+    </div>
+  </header>
+
+  <input type="text" id="searchBar" placeholder="Search for products..." />
+
+  <div class="products">
+    <!-- Example products — replicate as needed -->
+    <div class="product">
+      <img src="https://i.imgur.com/TDj1RYI.jpg" alt="Beaded Necklace" />
+      <h3>Beaded Necklace</h3>
+      <p>K120</p>
+      <button onclick="addToCart('Beaded Necklace', 120)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/0rnl5fp.jpg" alt="Stone Bracelet" />
+      <h3>Stone Bracelet</h3>
+      <p>K90</p>
+      <button onclick="addToCart('Stone Bracelet', 90)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jWfCwzd.jpg" alt="Earthy Earrings" />
+      <h3>Earthy Earrings</h3>
+      <p>K60</p>
+      <button onclick="addToCart('Earthy Earrings', 60)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/SSUclJM.jpg" alt="Leaf Pendant" />
+      <h3>Leaf Pendant</h3>
+      <p>K150</p>
+      <button onclick="addToCart('Leaf Pendant', 150)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/jPqA5Jz.jpg" alt="Woven Anklet" />
+      <h3>Woven Anklet</h3>
+      <p>K80</p>
+      <button onclick="addToCart('Woven Anklet', 80)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/eh8EAYQ.jpg" alt="Nature Ring" />
+      <h3>Nature Ring</h3>
+      <p>K70</p>
+      <button onclick="addToCart('Nature Ring', 70)">
+        <i class="fas fa-cart-plus"></i> Add to Cart
+      </button>
+    </div>
+  </div>
+
+  <div id="cartDrawer">
+    <button class="closeBtn" onclick="toggleCart()">&times;</button>
+    <h2>🛒 Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p class="total">Total Cost = ZMW <span id="cartTotal">0</span></p>
+  </div>
+
+  <div id="floatingCart" onclick="toggleCart()">
     <i class="fas fa-shopping-cart"></i>
-    <span id="headerCartCount">0</span>
-  </a>
-</header>
+    <span id="cartCount">0</span>
+  </div>
 
-<input type="text" id="searchBar" placeholder="Search for products...">
-
-<div class="products">
-  <!-- Products -->
-  <div class="product">
-    <img src="https://i.imgur.com/TDj1RYI.jpg" alt="Beaded Necklace">
-    <h3>Beaded Necklace</h3>
-    <p>K120</p>
-    <button onclick="addToCart('Beaded Necklace', 120)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-  <div class="product">
-    <img src="https://i.imgur.com/0rnl5fp.jpg" alt="Stone Bracelet">
-    <h3>Stone Bracelet</h3>
-    <p>K90</p>
-    <button onclick="addToCart('Stone Bracelet', 90)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-  <div class="product">
-    <img src="https://i.imgur.com/jWfCwzd.jpg" alt="Earthy Earrings">
-    <h3>Earthy Earrings</h3>
-    <p>K60</p>
-    <button onclick="addToCart('Earthy Earrings', 60)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-  <div class="product">
-    <img src="https://i.imgur.com/SSUclJM.jpg" alt="Leaf Pendant">
-    <h3>Leaf Pendant</h3>
-    <p>K150</p>
-    <button onclick="addToCart('Leaf Pendant', 150)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-  <div class="product">
-    <img src="https://i.imgur.com/jPqA5Jz.jpg" alt="Woven Anklet">
-    <h3>Woven Anklet</h3>
-    <p>K80</p>
-    <button onclick="addToCart('Woven Anklet', 80)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-  <div class="product">
-    <img src="https://i.imgur.com/eh8EAYQ.jpg" alt="Nature Ring">
-    <h3>Nature Ring</h3>
-    <p>K70</p>
-    <button onclick="addToCart('Nature Ring', 70)">
-      <i class="fas fa-cart-plus"></i> Add To Cart
-    </button>
-  </div>
-</div>
-
-<div id="cart">
-  <h2>🛒 Cart</h2>
-  <ul id="cartItems"></ul>
-  <p><strong>Total Cost = K<span id="cartTotal">0</span></strong></p>
-</div>
-
-<div id="payment">
-  <h2>💸 Payment Info</h2>
-  <p>MTN: <strong>0764202839</strong></p>
-  <p>Airtel: <strong>0977 654 321</strong></p>
-  <p>WhatsApp proof to <strong>0764202839</strong></p>
-</div>
-
-<a href="#cart" id="floatingCart">
-  <i class="fas fa-shopping-cart"></i>
-  <span id="cartCount">0</span>
-</a>
-
-<footer>
-  <img src="https://i.imgur.com/1vWTKja.png" alt="Logo">
-  <div>
-    <a href="https://www.instagram.com/earth_girl_jewels" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-    <a href="https://www.tiktok.com/@earth_girl_jewels" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-  </div>
-  <div style="margin-top: 10px;">
-    <a href="#">Privacy Policy</a> |
-    <a href="#">Terms</a> |
-    <a href="#">Cookie Policy</a>
-  </div>
-  <p>Earth Girl Jewels © 2025</p>
-</footer>
+  <footer>
+    <img src="https://i.imgur.com/1vWTKja.png" alt="Logo" />
+    <div>
+      <a href="https://www.instagram.com/earth_girl_jewels" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="https://www.tiktok.com/@earth_girl_jewels" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    </div>
+    <div style="margin-top:10px;">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms</a> |
+      <a href="#">Cookie Policy</a>
+    </div>
+    <p>Earth Girl Jewels © 2025</p>
+  </footer>
 
 <script>
   let cart = [];
 
-  function addToCart(name, price) {
-    cart.push({ name, price });
-    updateCart();
-    document.getElementById("cart").classList.add("show");
-    document.getElementById("payment").classList.add("show");
+  function toggleCart(){
+    document.getElementById('cartDrawer').classList.toggle('show');
   }
 
-  function updateCart() {
-    const cartList = document.getElementById("cartItems");
-    const total = document.getElementById("cartTotal");
-    cartList.innerHTML = "";
+  function addToCart(name, price){
+    cart.push({name, price});
+    updateCart();
+    if(!document.getElementById('cartDrawer').classList.contains('show')){
+      // optionally open drawer when adding
+    }
+  }
+
+  function updateCart(){
+    const list = document.getElementById('cartItems');
     let sum = 0;
-    cart.forEach(item => {
-      cartList.innerHTML += `<li>${item.name} - K${item.price}</li>`;
+    list.innerHTML = '';
+    cart.forEach((item, idx) => {
+      list.innerHTML += `<li>${item.name} – ZMW ${item.price}</li>`;
       sum += item.price;
     });
-    total.textContent = sum;
-    document.getElementById("cartCount").textContent = cart.length;
-    document.getElementById("headerCartCount").textContent = cart.length;
+    document.getElementById('cartTotal').textContent = sum;
+    document.getElementById('cartCount').textContent = cart.length;
+    document.getElementById('headerCartCount').textContent = cart.length;
   }
 
-  document.getElementById("searchBar").addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-    const products = document.querySelectorAll(".product");
-    products.forEach(product => {
-      const name = product.querySelector("h3").textContent.toLowerCase();
-      product.style.display = name.includes(query) ? "block" : "none";
+  document.getElementById('searchBar').addEventListener('input', function(){
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.product').forEach(p => {
+      p.style.display = p.querySelector('h3').textContent.toLowerCase().includes(q)
+        ? 'block' : 'none';
     });
   });
 </script>
-
 </body>
 </html>
